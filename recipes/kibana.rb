@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: logstash_stack
+# Cookbook Name:: ELK_stack
 # Recipe:: kibana
 #
 # Copyright (C) 2014, Rackspace, US Inc.
@@ -28,10 +28,10 @@ when 'rhel'
   package 'httpd-tools'
 end
 
-node.set_unless['logstash_stack']['kibana']['htpasswd'] = secure_password
+node.set_unless['ELK_stack']['kibana']['htpasswd'] = secure_password
 
 execute 'create kibana htpasswd file' do
-  command "htpasswd -bc /etc/nginx/logstash.htpasswd kibana #{node['logstash_stack']['kibana']['htpasswd']}"
+  command "htpasswd -bc /etc/nginx/logstash.htpasswd kibana #{node['ELK_stack']['kibana']['htpasswd']}"
   only_if { File.size?('/etc/nginx/logstash.htpasswd').nil? }
 end
 

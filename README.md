@@ -1,10 +1,10 @@
-# logstash_stack-cookbook
+# ELK_stack-cookbook
 
 A free standing Logstash 1.4, Elasticsearch 1.3, Kibana 3.0 rapid deployment cookbook.  This is designed to get up and running quickly and easily with packages from repos, and mostly default options.  Supports adding additional ES shards.
 
-The logstash server will setup a syslog listener on 5544.  Then run logstash_stack::rsyslog_client on each machine you wish to have deliver rsyslog messages to the server.  If you want additional plugins, or agent, you're more than welcome to write a wrapper cookbook to include that.  This cookbook should remain mostly static.
+The logstash server will setup a syslog listener on 5544.  Then run ELK_stack::rsyslog_client on each machine you wish to have deliver rsyslog messages to the server.  If you want additional plugins, or agent, you're more than welcome to write a wrapper cookbook to include that.  This cookbook should remain mostly static.
 
-You can include the logstash_stack::rsyslog_client on any server you want to have rsyslog shipped to logstash.
+You can include the ELK_stack::rsyslog_client on any server you want to have rsyslog shipped to logstash.
 
 ## Supported Platforms
 
@@ -12,44 +12,44 @@ RHEL, Debian
 
 ## Attributes
 
-`node['logstash_stack']['logstash_server_ip']` - Default is nil.  Set if you're running through Chef Solo or you wish to override searching for the logstash server.  Otherwise, it will run the search, and should locate the server.
+`node['ELK_stack']['logstash_server_ip']` - Default is nil.  Set if you're running through Chef Solo or you wish to override searching for the logstash server.  Otherwise, it will run the search, and should locate the server.
 
-`node['logstash_stack']['kibana']['htpasswd']` - Default is nil.  If it's unset it will place kibana behind http auth with a random password.  Add your own user/password with: `htpasswd /etc/nginx/logstash.htpasswd <user>`.  (As a note, I will be revamping this most likely in the next version).  If you do set the attribute, then your user will be kibana with the password in the attribute.
+`node['ELK_stack']['kibana']['htpasswd']` - Default is nil.  If it's unset it will place kibana behind http auth with a random password.  Add your own user/password with: `htpasswd /etc/nginx/logstash.htpasswd <user>`.  (As a note, I will be revamping this most likely in the next version).  If you do set the attribute, then your user will be kibana with the password in the attribute.
 
 ## Usage
 
-### logstash_stack::default
+### ELK_stack::default
 
-Include `logstash_stack` in your node's `run_list`:
+Include `ELK_stack` in your node's `run_list`:
 
 ```json
 {
   "run_list": [
-    "recipe[logstash_stack::default]"
+    "recipe[ELK_stack::default]"
   ]
 }
 ```
 
-### logstash_stack::elasticsearch
+### ELK_stack::elasticsearch
 
 If you want ElasticSearch redundancy/sharding for logstash, you can run only the elasticsearch recipe:
 
 ```json
 {
   "run_list": [
-    "recipe[logstash_stack::elasticsearch]"
+    "recipe[ELK_stack::elasticsearch]"
   ]
 }
 ```
 
-### logstash_stack::rsyslog_client
+### ELK_stack::rsyslog_client
 
 Include this recipe to configure rsyslog on any server to ship to your logstash server
 
 ```json
 {
   "run_list": [
-    "recipe[logstash_stack::rsyslog_client]"
+    "recipe[ELK_stack::rsyslog_client]"
   ]
 }
 ```

@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: logstash_stack
+# Cookbook Name:: ELK_stack
 # Recipe:: default
 #
 # Copyright (C) 2014, Rackspace, US Inc.
@@ -20,15 +20,15 @@
 # Set repos up first so debian based can have its apt caches rebuilt.
 case node['platform_family']
 when 'rhel'
-  include_recipe 'logstash_stack::redhat_repos'
+  include_recipe 'ELK_stack::redhat_repos'
 when 'debian'
-  include_recipe 'logstash_stack::debian_repos'
+  include_recipe 'ELK_stack::debian_repos'
 end
 
 [
-  'logstash_stack::elasticsearch',
-  'logstash_stack::logstash',
-  'logstash_stack::kibana'
+  'ELK_stack::elasticsearch',
+  'ELK_stack::logstash',
+  'ELK_stack::kibana'
 ].each do |recipe|
   include_recipe recipe
 end

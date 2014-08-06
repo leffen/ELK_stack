@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'logstash_stack::rsyslog_client' do
+describe 'ELK_stack::rsyslog_client' do
   context 'on ubuntu' do
     let(:chef_run) { ChefSpec::Runner.new(platform: 'ubuntu', version: '12.04') }
 
@@ -12,12 +12,12 @@ describe 'logstash_stack::rsyslog_client' do
     end
 
     it 'fails when logstash server search returns empty' do
-      stub_search(:node, 'recipes:logstash_stack\:\:logstash' << " AND chef_environment:#{chef_run.node.chef_environment}").and_return([])
+      stub_search(:node, 'recipes:ELK_stack\:\:logstash' << " AND chef_environment:#{chef_run.node.chef_environment}").and_return([])
       expect { chef_run.converge(described_recipe) }.to raise_error(SystemExit)
     end
 
     it 'adds rsyslog conf file with searched IP' do
-      stub_search(:node, 'recipes:logstash_stack\:\:logstash' << " AND chef_environment:#{chef_run.node.chef_environment}").and_return([{ ipaddress: '10.120.130.140' }])
+      stub_search(:node, 'recipes:ELK_stack\:\:logstash' << " AND chef_environment:#{chef_run.node.chef_environment}").and_return([{ ipaddress: '10.120.130.140' }])
       chef_run.converge(described_recipe)
       expect(chef_run).to install_package('rsyslog')
       expect(chef_run).to create_template('/etc/rsyslog.d/logstash_rsyslog_client.conf')
@@ -28,7 +28,7 @@ describe 'logstash_stack::rsyslog_client' do
     end
 
     it 'adds rsyslog conf file when logstash_server_ip is set' do
-      chef_run.node.set['logstash_stack']['logstash_server_ip'] = '10.20.30.40'
+      chef_run.node.set['ELK_stack']['logstash_server_ip'] = '10.20.30.40'
       chef_run.converge(described_recipe)
       expect(chef_run).to install_package('rsyslog')
       expect(chef_run).to create_template('/etc/rsyslog.d/logstash_rsyslog_client.conf')
@@ -50,12 +50,12 @@ describe 'logstash_stack::rsyslog_client' do
     end
 
     it 'fails when logstash server search returns empty' do
-      stub_search(:node, 'recipes:logstash_stack\:\:logstash' << " AND chef_environment:#{chef_run.node.chef_environment}").and_return([])
+      stub_search(:node, 'recipes:ELK_stack\:\:logstash' << " AND chef_environment:#{chef_run.node.chef_environment}").and_return([])
       expect { chef_run.converge(described_recipe) }.to raise_error(SystemExit)
     end
 
     it 'adds rsyslog conf file with searched IP' do
-      stub_search(:node, 'recipes:logstash_stack\:\:logstash' << " AND chef_environment:#{chef_run.node.chef_environment}").and_return([{ ipaddress: '10.120.130.140' }])
+      stub_search(:node, 'recipes:ELK_stack\:\:logstash' << " AND chef_environment:#{chef_run.node.chef_environment}").and_return([{ ipaddress: '10.120.130.140' }])
       chef_run.converge(described_recipe)
       expect(chef_run).to install_package('rsyslog')
       expect(chef_run).to create_template('/etc/rsyslog.d/logstash_rsyslog_client.conf')
@@ -66,7 +66,7 @@ describe 'logstash_stack::rsyslog_client' do
     end
 
     it 'adds rsyslog conf file when logstash_server_ip is set' do
-      chef_run.node.set['logstash_stack']['logstash_server_ip'] = '10.20.30.40'
+      chef_run.node.set['ELK_stack']['logstash_server_ip'] = '10.20.30.40'
       chef_run.converge(described_recipe)
       expect(chef_run).to install_package('rsyslog')
       expect(chef_run).to create_template('/etc/rsyslog.d/logstash_rsyslog_client.conf')
@@ -88,12 +88,12 @@ describe 'logstash_stack::rsyslog_client' do
     end
 
     it 'fails when logstash server search returns empty' do
-      stub_search(:node, 'recipes:logstash_stack\:\:logstash' << " AND chef_environment:#{chef_run.node.chef_environment}").and_return([])
+      stub_search(:node, 'recipes:ELK_stack\:\:logstash' << " AND chef_environment:#{chef_run.node.chef_environment}").and_return([])
       expect { chef_run.converge(described_recipe) }.to raise_error(SystemExit)
     end
 
     it 'adds rsyslog conf file with searched IP' do
-      stub_search(:node, 'recipes:logstash_stack\:\:logstash' << " AND chef_environment:#{chef_run.node.chef_environment}").and_return([{ ipaddress: '10.120.130.140' }])
+      stub_search(:node, 'recipes:ELK_stack\:\:logstash' << " AND chef_environment:#{chef_run.node.chef_environment}").and_return([{ ipaddress: '10.120.130.140' }])
       chef_run.converge(described_recipe)
       expect(chef_run).to install_package('rsyslog')
       expect(chef_run).to create_template('/etc/rsyslog.d/logstash_rsyslog_client.conf')
@@ -104,7 +104,7 @@ describe 'logstash_stack::rsyslog_client' do
     end
 
     it 'adds rsyslog conf when logstash_server_ip is set' do
-      chef_run.node.set['logstash_stack']['logstash_server_ip'] = '10.20.30.40'
+      chef_run.node.set['ELK_stack']['logstash_server_ip'] = '10.20.30.40'
       chef_run.converge(described_recipe)
       expect(chef_run).to install_package('rsyslog')
       expect(chef_run).to create_template('/etc/rsyslog.d/logstash_rsyslog_client.conf')

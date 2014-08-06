@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: logstash_stack
+# Cookbook Name:: ELK_stack
 # Attributes:: default
 #
 # Copyright 2014, Rackspace, US Inc.
@@ -18,4 +18,4 @@
 #
 # Setting this is required in chef-solo mode.  In chef-client mode this will
 # override searching for a logstash server.
-default['logstash_stack']['logstash_server_ip'] = nil
+default['ELK_stack']['logstash_server_ip'] = nil

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'logstash_stack::default' do
+describe 'ELK_stack::default' do
   let(:chef_run) { ChefSpec::Runner.new(platform: 'ubuntu', version: '12.04').converge(described_recipe) }
 
   it 'sets up repos for Ubuntu' do
@@ -40,7 +40,7 @@ describe 'logstash_stack::default' do
   end
 end
 
-describe 'logstash_stack::default' do
+describe 'ELK_stack::default' do
   let(:chef_run) { ChefSpec::Runner.new(platform: 'debian', version: '7.2').converge(described_recipe) }
 
   it 'sets up repos for Debian' do
@@ -79,7 +79,7 @@ describe 'logstash_stack::default' do
   end
 end
 
-describe 'logstash_stack::default' do
+describe 'ELK_stack::default' do
   let(:chef_run) { ChefSpec::Runner.new(platform: 'centos', version: '6.4').converge(described_recipe) }
 
   it 'sets up repos for CentOS' do

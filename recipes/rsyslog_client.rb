@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: logstash_stack
+# Cookbook Name:: ELK_stack
 # Recipe:: rsyslog_client
 #
 # Copyright (C) 2014, Rackspace, US Inc.
@@ -21,18 +21,18 @@ require 'chef/application'
 
 package 'rsyslog'
 
-if node['logstash_stack']['logstash_server_ip'].nil?
+if node['ELK_stack']['logstash_server_ip'].nil?
   begin
-    result = search(:node, 'recipes:logstash_stack\:\:logstash' << " AND chef_environment:#{node.chef_environment}").first # ~FC003
+    result = search(:node, 'recipes:ELK_stack\:\:logstash' << " AND chef_environment:#{node.chef_environment}").first # ~FC003
   rescue Chef::Exceptions::PrivateKeyMissing, ChefSpec::Error::SearchNotStubbed
-    Chef::Application.fatal!("In chef-solo mode, you must set the node['logstash_stack']['logstash_server_ip'] attribute.")
+    Chef::Application.fatal!("In chef-solo mode, you must set the node['ELK_stack']['logstash_server_ip'] attribute.")
   end
   if result.nil?
     Chef::Application.fatal!('Search did not find a logstash server. '\
-                             "Set the node['logstash_stack']['logstash_server_ip'] attribute. "\
+                             "Set the node['ELK_stack']['logstash_server_ip'] attribute. "\
                              'This is required if running in chef-solo')
   else
-    node.set['logstash_stack']['logstash_server_ip'] = result['ipaddress']
+    node.set['ELK_stack']['logstash_server_ip'] = result['ipaddress']
   end
 end
 

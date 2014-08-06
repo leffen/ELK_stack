@@ -25,9 +25,9 @@ platforms:
 suites:
   - name: debian_ls_server
     run_list:
-      - recipe[logstash_stack]
+      - recipe[ELK_stack]
     attributes:
-      logstash_stack:
+      ELK_stack:
         kibana:
           htpasswd: "kibana"
     includes:
@@ -36,9 +36,9 @@ suites:
 
   - name: centos_ls_server
     run_list:
-      - recipe[logstash_stack]
+      - recipe[ELK_stack]
     attributes:
-      logstash_stack:
+      ELK_stack:
         kibana:
           htpasswd: "kibana"
     includes:
@@ -46,9 +46,9 @@ suites:
 
   - name: debian_rsyslog_client
     run_list:
-      - recipe[logstash_stack::rsyslog_client]
+      - recipe[ELK_stack::rsyslog_client]
     attributes:
-      logstash_stack:
+      ELK_stack:
         logstash_server_ip: "10.20.30.40"
     includes:
       - ubuntu-12.04
@@ -56,9 +56,9 @@ suites:
 
   - name: centos_rsyslog_client
     run_list:
-      - recipe[logstash_stack::rsyslog_client]
+      - recipe[ELK_stack::rsyslog_client]
     attributes:
-      logstash_stack:
+      ELK_stack:
         logstash_server_ip: "10.20.30.40"
     includes:
       - centos-6.4

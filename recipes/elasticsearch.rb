@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: logstash_stack
+# Cookbook Name:: ELK_stack
 # Recipe:: elasticsearch
 #
 # Copyright (C) 2014, Rackspace, US Inc.
