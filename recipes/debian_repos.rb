@@ -19,7 +19,7 @@
 
 include_recipe 'apt'
 
-apt_repository 'logstash-1.4' do
+apt_repository 'logstash-1.4.2' do
   uri 'http://packages.elasticsearch.org/logstash/1.4/debian'
   distribution 'stable'
   components ['main']
@@ -28,8 +28,8 @@ apt_repository 'logstash-1.4' do
   action :add
 end
 
-apt_repository 'elasticsearch-1.3' do
-  uri 'http://packages.elasticsearch.org/elasticsearch/1.3/debian'
+apt_repository 'elasticsearch-1.4.2' do
+  uri 'http://packages.elasticsearch.org/elasticsearch/1.4/debian'
   distribution 'stable'
   components ['main']
   keyserver 'keyserver.ubuntu.com'
